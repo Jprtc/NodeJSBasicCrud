@@ -1,0 +1,14 @@
+
+MVCM - MODEL - (ENTITIES)
+C - CONTROLLER ()
+V - VIEWREQUISIÇÃO - (POST, GET, PUT, DELETE)
+
+
+
+enviar um post JSON (name, telephone, email)
+rota /clients
+rota post(/clients) -> controller (ClientsController)
+Controller (pegar os dados ) e chama um Services (ClientServices)
+Services é que contém a regra negócio da aplicação, é ele
+que irá se comunicar com o banco de dados
+
