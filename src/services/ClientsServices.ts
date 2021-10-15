@@ -54,10 +54,22 @@ class ClientsServices{
         const clients = await clientsRepository.findOne({id})
 
         if(!clients){
-            throw new Error('Não há cliente com esse ID')
+            throw new Error('Não há clientes com esse ID')
         }
 
         return clients
+    }
+
+    async showEmail({email} :IClientsShowByEmail){
+        const clientsRepository = getCustomRepository(ClientsRepository)
+        const clients = await clientsRepository.findOne({email})
+
+        if(!email){
+            throw new Error('Não há clientes com esse e-mail.')
+        }
+
+        return clients
+
     }
 
 }

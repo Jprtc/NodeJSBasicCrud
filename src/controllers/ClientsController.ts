@@ -42,6 +42,18 @@ class ClientsController{
                 .json({mensagem: err.message})
         }
     }
+
+    async showByEmail(request: Request, response: Response){
+        const clientsService = new ClientsServices();
+        const {email} = request.params;
+
+        try {
+            const clients = await clientsService.showEmail({email})
+            return response.status(200).json(clients)
+        } catch (err) {
+            return response.status(400).json({mensagem: err.message})
+        }
+    }
 }
 
 
