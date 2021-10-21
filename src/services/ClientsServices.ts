@@ -7,11 +7,18 @@ interface IClientsCreate{
     email: string;
 }
 
-interface IClientsShow{
+interface IClientsID{
     id: string;
 }
 
 interface IClientsShowByEmail{
+    email: string;
+}
+
+interface IClientsUpdate{
+    id:string;
+    name:string;
+    telephone:string;
     email: string;
 }
 
@@ -49,7 +56,7 @@ class ClientsServices{
         return clients
     }
 
-    async show({id} : IClientsShow){
+    async show({id} : IClientsID){
         const clientsRepository = getCustomRepository(ClientsRepository)
         const clients = await clientsRepository.findOne({id})
 
@@ -70,6 +77,29 @@ class ClientsServices{
 
         return clients
 
+    }
+
+    async delete({id}: IClientsID){
+        const clientsRepository = getCustomRepository(ClientsRepository)
+        const clients = await clientsRepository.findOne({id})
+
+        if(!clients){
+            throw new Error('Não há clientes com esse ID registrado')
+        }
+        
+        return await clientsRepository.delete({id})
+    }
+
+    async update({id,name,telephone,email}:IClientsUpdate){
+        const clientsRepository = getCustomRepository(ClientsRepository)
+        const clients = await clientsRepository.findOne({id})
+
+        if(!clients){
+            throw new Error('Não há clientes com esse ID registrado')
+        }
+        await clientsRepository.update(id,{name,telephone,email})
+        const updatedClients = await clientsRepository.findOne({id})
+        return updatedClients
     }
 
 }

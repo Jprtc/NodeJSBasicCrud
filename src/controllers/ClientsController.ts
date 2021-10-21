@@ -54,6 +54,33 @@ class ClientsController{
             return response.status(400).json({mensagem: err.message})
         }
     }
+
+    async delete(request: Request, response: Response){
+        const clientsService = new ClientsServices();
+        const {id} = request.params;
+
+        try {
+            const clients = await clientsService.delete({id})
+            return response.status(200).json({message: 'Cliente excluido com sucesso!'})
+        } catch (error) {
+            return response.status(400).json({mensagem: error.message})
+        }
+    }
+
+    async update(request: Request, response: Response){
+        const {name,telephone,email} = request.body
+        const {id} = request.params;
+
+        const clientsService = new ClientsServices();
+
+        try {
+            const clients = await clientsService.update({id, name,telephone, email})
+            return response.status(200).json(clients)
+        } catch (error) {
+            return response.status(400).json({mensagem: error.message})
+        }
+    }
+
 }
 
 
