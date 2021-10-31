@@ -43,6 +43,40 @@ class ProductsServices{
 
         return products
     }
+
+    async show({id} : IProductsID){
+        const productsRepository = getCustomRepository(ProductsRepository)
+        const products = await productsRepository.findOne({id})
+
+        if(!products){
+            throw new Error('Não há produtos com esse ID')
+        }
+
+        return products
+    }
+
+    async update({id,prodName,unidadeMedida}:IProductsUpdate){
+        const productsRepository = getCustomRepository(ProductsRepository)
+        const products = await productsRepository.findOne({id})
+
+        if(!products){
+            throw new Error('Não há produtos com esse ID registrado')
+        }
+        await productsRepository.update(id,{prodName,unidadeMedida})
+        const updatedproducts = await productsRepository.findOne({id})
+        return updatedproducts
+    }
+
+    async delete({id}: IProductsID){
+        const productsRepository = getCustomRepository(ProductsRepository)
+        const products = await productsRepository.findOne({id})
+
+        if(!products){
+            throw new Error('Não há produtos com esse ID registrado')
+        }
+        
+        return await productsRepository.delete({id})
+    }
 }
 
 export {ProductsServices}

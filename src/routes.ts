@@ -14,14 +14,11 @@ routes.put('/clients/:id', clientsController.update)
 
 routes.get('/products', productsController.index)
 routes.post('/products', productsController.create)
-routes.get('/products:id', productsController.show)
-routes.delete('/products:id', productsController.delete)
-routes.put('/products:id', productsController.update)
+routes.get('/products/:id', productsController.show)
+routes.delete('/products/:id', productsController.delete)
+routes.put('/products/:id', productsController.update)
 
 routes.get('/clients/email/:email', clientsController.showByEmail)
-// routes.post('/clients', executarController.metodoControle)
-// routes.get('/clients', executarController.metodoControle)
-// routes.delete('/clients', executarController.metodoControle)
-// routes.put('/clients', executarController.metodoControle)
+
 
 export {routes}
