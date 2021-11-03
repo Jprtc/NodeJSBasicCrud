@@ -1,10 +1,12 @@
 import {Router} from 'express'
 import {ClientsController} from './controllers/ClientsController'
 import {ProductsController} from './controllers/ProductsController'
+import { SalesOrdersController } from './controllers/SalesOrdersController'
 const routes = Router()
 
 const clientsController = new ClientsController()
 const productsController = new ProductsController()
+const salesOrdersController = new SalesOrdersController()
 
 routes.post('/clients' , clientsController.create)
 routes.get('/clients', clientsController.index)
@@ -17,6 +19,9 @@ routes.post('/products', productsController.create)
 routes.get('/products/:id', productsController.show)
 routes.delete('/products/:id', productsController.delete)
 routes.put('/products/:id', productsController.update)
+
+routes.post('/salesorders', salesOrdersController.create)
+routes.get('/salesorders', salesOrdersController.index)
 
 routes.get('/clients/email/:email', clientsController.showByEmail)
 
