@@ -22,6 +22,9 @@ routes.put('/products/:id', productsController.update)
 
 routes.post('/salesorders', salesOrdersController.create)
 routes.get('/salesorders', salesOrdersController.index)
+routes.get('/salesorders/:id', salesOrdersController.show)
+routes.put('/salesorders/:id', salesOrdersController.update)
+routes.delete('/salesorders/:id', salesOrdersController.delete)
 
 routes.get('/clients/email/:email', clientsController.showByEmail)
 
